@@ -35,6 +35,7 @@ export default function RootLayout({
           >
             <NavbarContextProvider>
             {children}
+            <SpeedInsights />
             <Analytics />
             </NavbarContextProvider>
           </ThemeProvider>
