@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { NavbarContextProvider } from "../components/context/page";
 import { ThemeProvider } from "@/components/theme-provider"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 
 const fontSans = FontSans({
