@@ -1,8 +1,8 @@
-import { getOrgsByName, getProjectsByName } from "@/prisma/getOrgs";
+import { getLinksByName, getOrgsByName, getProjectsByName } from "@/prisma/getOrgs";
 
 import CurvedlineChart from "@/components/CurvedlineChart"
 
-import { BookmarkIcon, MailIcon, PrinterIcon, ShareIcon, TwitterIcon } from "@/components/Icons";
+import { BookmarkIcon, LinkIcon, MailIcon, MessageCircleIcon, PrinterIcon, ShareIcon, TwitterIcon } from "@/components/Icons";
 import Projects from "@/components/Projects";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
@@ -14,6 +14,7 @@ export default async function Component({ params }: { params: { organization: st
   const name = decodeURIComponent(params.organization);
   const orgData = await getOrgsByName(name);
   const orgProjects = await getProjectsByName(name);
+  const orgLinks = await getLinksByName(name);
   let graph = (orgData?.year.length || 0) > 1;
 
   return (
@@ -44,11 +45,14 @@ export default async function Component({ params }: { params: { organization: st
             </Link>}
           </div>
           <div className="flex space-x-2 justify-center">
-            <TwitterIcon className="text-blue-400" />
-            <MailIcon className="text-red-400" />
-            <ShareIcon className="text-green-400" />
-            <BookmarkIcon className="text-yellow-400" />
-            <PrinterIcon className="text-gray-400" />
+            {orgLinks?.map((link,i) => (
+              <Link href={link.link} target="_blank" key={i}>
+                {link.link.includes('twitter') && <TwitterIcon className="text-blue-400" />}
+                {link.textContent.includes('mail') && <MailIcon className="text-red-400" />}
+                {link.textContent.includes('chat') && <MessageCircleIcon className="text-orange-400" />}
+                {!link.link.includes('twitter') && !link.textContent.includes('mail') && !link.textContent.includes('chat') && <LinkIcon className="text-fuchsia-400"/>}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="border-t-2 py-4">

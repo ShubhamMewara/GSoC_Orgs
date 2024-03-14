@@ -46,3 +46,14 @@ export async function getProjectsByName(name: string) {
     );
     return orgsTechnologies;
 }
+
+export async function getLinksByName(name: string) {
+    const orgsTechnologies = await prisma.links.findMany(
+        {
+            where:{
+                organizationsName: name
+            }
+        }
+    );
+    return orgsTechnologies;
+}
