@@ -3,19 +3,22 @@ import React, { useEffect, useState } from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { useGlobalContext } from "@/components/context/page";
 
-interface Org{
-  id: number;
-  name: string;
-  description: string;
-  img: string;
-  link: string;
-  year: number[];
-  Technologies: string[];
-  Topics: string[];
-}
+interface Org{ 
+  id: number; 
+  name: string; 
+  description: string; 
+  img: string; 
+  link: string; 
+  weblink: string | null; 
+  ContributorGuidance: string | null; 
+  IdeasList: string | null; 
+  category: string | null; 
+  year: number[]; 
+  Technologies: string[]; 
+  Topics: string[]; }
 
 export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
-  const { search,selectedYear ,selectedTech , selectedTopic, setNumofOrgs} = useGlobalContext();
+  const { search,selectedYear ,selectedTech , selectedTopic, selectedCategory, setNumofOrgs} = useGlobalContext();
   const [filteredItems, setFilteredItems] = useState(allOrgs);
   
   const filterItems = () => {
@@ -30,7 +33,10 @@ export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
     }
 
     if (selectedTopic.length > 0) {
-      filtered = filtered.filter((item: any) => selectedTopic.every(topic => item.Topics.includes(topic)));
+      filtered = filtered.filter((item) => selectedTopic.every(topic => item.Topics.includes(topic)));
+    }
+    if (selectedCategory.length > 0) {
+      filtered = filtered.filter((item) => selectedCategory.includes(item.category || ''));
     }
     if (search) {
       filtered = filtered.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
@@ -40,11 +46,11 @@ export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
 
   useEffect(() => {
     filterItems();
-  }, [search, selectedYear, selectedTech, selectedTopic]);
+  }, [search, selectedYear, selectedTech, selectedTopic, selectedCategory]);
   setNumofOrgs(filteredItems.length);
   return (
     <BentoGrid className="pt-6 mx-auto md:auto-rows-[20rem]">
-      {filteredItems.map((item:any, i:number) => (
+      {filteredItems.map((item, i) => (
         <BentoGridItem
           key={i}
           title={item.name}
@@ -52,6 +58,7 @@ export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
           img={item.img}
           year={item.year}
           technologies={item.Technologies}
+          category={item.category}
         />
       ))}
     </BentoGrid>

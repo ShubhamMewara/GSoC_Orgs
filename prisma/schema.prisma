@@ -16,6 +16,7 @@ model Organizations {
   weblink      String?
   ContributorGuidance String?
   IdeasList   String?
+  category    String?
   links        links[]
   year         Int[]
   Technologies String[]

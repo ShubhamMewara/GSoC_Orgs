@@ -11,6 +11,8 @@ const Context = createContext<{
     setSelectedTech: (selectedFilter: Array<string>) => void;
     selectedTopic: Array<string>;
     setSelectedTopic: (selectedFilter: Array<string>) => void;
+    selectedCategory: Array<string>;
+    setSelectedCategory: (selectedFilter: Array<string>) => void;
     numofOrgs: number;
     setNumofOrgs: (numofOrgs: number) => void;}>
     ({
@@ -22,6 +24,8 @@ const Context = createContext<{
     setSelectedTech: () => [],
     selectedTopic: [],
     setSelectedTopic: () => [],
+    selectedCategory: [],
+    setSelectedCategory: () => [],
     numofOrgs: 0,
     setNumofOrgs: () => 0,});
 
@@ -31,9 +35,10 @@ const Context = createContext<{
     const [selectedYear, setSelectedYear] = useState<Array<number>>([]);
     const [selectedTech, setSelectedTech] = useState<string[]>([])
     const [selectedTopic, setSelectedTopic] = useState<string[]>([])
+    const [selectedCategory, setSelectedCategory] = useState<string[]>([])
     const [numofOrgs,setNumofOrgs] = useState<number>(0);
     return (
-        <Context.Provider value={{search, setSearch, selectedYear, setSelectedYear ,selectedTech ,setSelectedTech,numofOrgs, selectedTopic, setSelectedTopic, setNumofOrgs }}>
+        <Context.Provider value={{search, setSearch, selectedYear, setSelectedYear ,selectedTech ,setSelectedTech,numofOrgs, selectedTopic, setSelectedTopic, selectedCategory, setSelectedCategory, setNumofOrgs }}>
             {children}
         </Context.Provider>
     );

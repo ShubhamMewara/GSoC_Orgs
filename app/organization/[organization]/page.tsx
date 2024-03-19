@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 
 
-
-
 export default async function Component({ params }: { params: { organization: string } }) {
   const name = decodeURIComponent(params.organization);
   const orgData = await getOrgsByName(name);
@@ -29,7 +27,7 @@ export default async function Component({ params }: { params: { organization: st
           <div className="text-gray-600 text-center">
             {orgData?.description}
           </div>
-          <Button className="mt-3" variant="secondary">Science and medicine</Button>
+          <Button className="mt-3" variant="secondary">{orgData?.category}</Button>
         </div>
         <div className="grid grid-cols-3 items-center h-14">
           <div className="grid grid-cols-3 col-span-2">
