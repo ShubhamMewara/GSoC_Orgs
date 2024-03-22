@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React, { useEffect, useState } from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { useGlobalContext } from "@/components/context/page";
@@ -49,7 +49,7 @@ export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
   }, [search, selectedYear, selectedTech, selectedTopic, selectedCategory]);
   setNumofOrgs(filteredItems.length);
   return (
-    <BentoGrid className="pt-6 mx-auto md:auto-rows-[20rem]">
+    <BentoGrid className="pt-6 mx-auto">
       {filteredItems.map((item, i) => (
         <BentoGridItem
           key={i}

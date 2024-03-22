@@ -88,7 +88,7 @@ const Filter = ({filterList, setfilterList, selectedFilter, setSelectedFilter, T
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto max-h-[50vh] p-0">
+                <PopoverContent className="w-auto h-56 p-0">
                   <Command>
                     <CommandInput placeholder={`Search ${Type}...`} />
                     <CommandEmpty>No language found.</CommandEmpty>
