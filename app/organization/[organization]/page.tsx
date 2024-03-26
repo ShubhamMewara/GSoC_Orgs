@@ -2,7 +2,7 @@ import { getLinksByName, getOrgsByName, getProjectsByName } from "@/prisma/getOr
 
 import CurvedlineChart from "@/components/CurvedlineChart"
 
-import { BookmarkIcon, LinkIcon, MailIcon, MessageCircleIcon, PrinterIcon, ShareIcon, TwitterIcon } from "@/components/Icons";
+import { LinkIcon, MailIcon, MessageCircleIcon, TwitterIcon } from "@/components/Icons";
 import Projects from "@/components/Projects";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
@@ -46,7 +46,7 @@ export default async function Component({ params }: { params: { organization: st
             {orgLinks?.map((link,i) => (
               <Link href={link.link} target="_blank" key={i}>
                 {link.link.includes('twitter') && <TwitterIcon className="text-blue-400" />}
-                {link.textContent.includes('mail') && <MailIcon className="text-red-400" />}
+                {link.link.includes('mailto:') && <MailIcon className="text-red-400" />}
                 {link.textContent.includes('chat') && <MessageCircleIcon className="text-orange-400" />}
                 {!link.link.includes('twitter') && !link.textContent.includes('mail') && !link.textContent.includes('chat') && <LinkIcon className="text-fuchsia-400"/>}
               </Link>

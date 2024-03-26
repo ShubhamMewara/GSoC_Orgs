@@ -12,7 +12,6 @@ export async function scrapeOrgs(year:number){
         const numofpages = Math.floor(Number(rangeoforgs?.split(' ')[5])/50);
         let allOrgs:any = [];
         for (let i = 0; i <= numofpages; i++) {
-            
             await page.waitForSelector('.card');
             let orgsOnPage = await page.evaluate((year)=>{
                 let orgcard = Array.from( document.querySelectorAll('.card'))
@@ -35,7 +34,7 @@ export async function scrapeOrgs(year:number){
                 console.log('No next button found');
             }
             if(i == numofpages){
-                return allOrgs ;
+                return allOrgs.flat();
             }
         }
 
