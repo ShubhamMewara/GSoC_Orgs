@@ -7,6 +7,8 @@ import { ModeToggle } from './toggleTheme'
 import Filter from './Filter'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
+import Link from 'next/link'
+import { GithubIcon } from './Icons'
 
 
 const Navbar = () => {
@@ -34,6 +36,11 @@ const Navbar = () => {
         <Button className='mx-2 bg-inherit border-gray-300' variant="outline">
           { numofOrgs }
         </Button>
+        <Link href={'https://github.com/ShubhamMewara/GSoC_Orgs'} target='_blank'>
+          <Button className='mx-2 bg-inherit border-gray-300' variant="outline">
+          <GithubIcon className="h-4 w-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   )
