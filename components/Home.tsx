@@ -49,7 +49,7 @@ export default function LandingPage({allOrgs}:{allOrgs: Org[]}) {
   }, [search, selectedYear, selectedTech, selectedTopic, selectedCategory]);
   setNumofOrgs(filteredItems.length);
   return (
-    <BentoGrid className="pt-6 mx-auto">
+    <BentoGrid className="">
       {filteredItems.map((item, i) => (
         <BentoGridItem
           key={i}

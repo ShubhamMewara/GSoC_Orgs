@@ -96,7 +96,7 @@ const Filter = ({filterList, setfilterList, selectedFilter, setSelectedFilter, T
                       <div className={(Type == 'Year')?"":'grid grid-cols-3'}>
                       {filterList.map((language:any,i:any) => (
                         <CommandItem
-                          className={ selectedFilter.includes(language)? "bg-gray-100": "" }
+                          className={ selectedFilter.includes(language)? "bg-gray-100 dark:bg-slate-900": "" }
                           key={i}
                           onSelect={() => {
                             handleTechFilterButton(language)

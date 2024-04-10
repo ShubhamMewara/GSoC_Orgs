@@ -7,7 +7,9 @@ export default async function Home(){
   return (
     <div>
         <Navbar/>
+        <div className="flex justify-center">
         <LandingPage allOrgs={allOrgs}/>
+        </div>
     </div>
   );
 }

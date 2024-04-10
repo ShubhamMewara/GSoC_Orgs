@@ -10,7 +10,6 @@ import { Input } from './ui/input'
 import Link from 'next/link'
 import { GithubIcon } from './Icons'
 
-
 const Navbar = () => {
   const [yearList, setYearList] = useState([2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016]);
   const [technologiesList, setTechnologiesList] = useState(Technologies);
@@ -19,10 +18,10 @@ const Navbar = () => {
   const { setSearch, selectedYear, setSelectedYear , selectedTech, setSelectedTech, selectedTopic, setSelectedTopic, selectedCategory, setSelectedCategory, numofOrgs  } = useGlobalContext()
 
   return (
-    <div className='grid grid-cols-7 justify-evenly items-center h-20 sticky top-0 z-50 w-screen bg-gray-100 dark:bg-gray-800 supports-[backdrop-filter]:bg-gray-100/60 backdrop-blur'>
-      <div className='grid grid-cols-5 justify-stretch col-span-6'>
-        <Input placeholder="Search..." className='flex justify-center items-center border-2 dark:border-gray-500 border-gray-300 bg-inherit ml-5' type="search" onChange={(e)=>(setSearch(e.target.value))} />
-        {/* DropdownMenu for filters */}
+    <div className='flex flex-col xl:flex-row justify-evenly items-center pr-6 h-20 sticky top-0 z-50 bg-gray-100 dark:bg-slate-900 supports-[backdrop-filter]:bg-gray-100/60 backdrop-blur'>
+      <div className='flex flex-col xl:flex-row justify-evenly space-x-6 mr-6 w-full '>
+        <Input placeholder="Search..." className='min-w-60 max-w-80 flex flex-1 justify-center items-center border-2 dark:border-gray-500 border-gray-300 bg-inherit ml-3' type="search" onChange={(e)=>(setSearch(e.target.value))} />
+        {/* DropdownMenu for technologies */}
         <Filter filterList={technologiesList} setfilterList={setTechnologiesList} selectedFilter={selectedTech} setSelectedFilter={setSelectedTech} Type='Tech'/>
         {/* DropdownMenu for years */}
         <Filter filterList={yearList} setfilterList={setYearList} selectedFilter={selectedYear} setSelectedFilter={setSelectedYear} Type='Year'/>

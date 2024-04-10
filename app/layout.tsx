@@ -24,8 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1370358883599514" crossOrigin="anonymous">
+
+     </script>
+      </head>
       <body className={cn(
-          "min-h-screen bg-background bg-gray-100 dark:bg-gray-800 font-sans antialiased",
+          "min-h-screen bg-background overflow-x-hidden bg-gray-100 dark:bg-slate-900 font-sans antialiased",
           fontSans.variable
         )}>
           <ThemeProvider
