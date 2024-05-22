@@ -30,7 +30,7 @@ export default function RootLayout({
      </script>
       </head>
       <body className={cn(
-          "min-h-screen bg-background overflow-x-hidden bg-gray-100 dark:bg-slate-900 font-sans antialiased",
+          " overflow-x-hidden bg-gray-100 dark:bg-slate-900 font-sans antialiased",
           fontSans.variable
         )}>
           <ThemeProvider

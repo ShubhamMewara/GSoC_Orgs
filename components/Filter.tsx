@@ -52,18 +52,14 @@ const Filter = ({filterList, setfilterList, selectedFilter, setSelectedFilter, T
         if(selectedFilter.includes(language)){
             setSelectedFilter(selectedFilter.filter((item:any) => item !== language))
         }else{
-          // Remove the selected year from its current position
-          //@ts-ignore
-          const filteredList = filterList.filter(item => item !== language);
-          // Add the selected year to the beginning of the list
+          const filteredList = filterList.filter((item:any)=> item !== language);
           const updatedList = [language, ...filteredList];
-          // Update the state with the new list
           setfilterList(updatedList);
           setSelectedFilter([...selectedFilter, language])
         }
       }
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center mb-2 mr-2 md:mb-0'>
     <Form {...form}>
       <form className="space-y-6">
         <FormField
