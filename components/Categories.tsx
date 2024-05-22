@@ -12,7 +12,7 @@ const [yearList, setYearList] = useState([2024, 2023, 2022, 2021, 2020, 2019, 20
   const { selectedYear, setSelectedYear , selectedTech, setSelectedTech, selectedTopic, setSelectedTopic, selectedCategory, setSelectedCategory } = useGlobalContext()
 
   return (
-    <div className='flex flex-col md:flex-row justify-between mx-8 items-center h-auto sticky top-0 z-50 bg-gray-100 dark:bg-slate-900 supports-[backdrop-filter]:bg-gray-100/60 backdrop-blur mt-2 md:mt-0'>
+    <div className='flex flex-col md:flex-row justify-between mx-8 mb-4 items-center h-auto sticky top-0 z-50 bg-gray-100 dark:bg-slate-900 supports-[backdrop-filter]:bg-gray-100/60 backdrop-blur mt-2 md:mt-0'>
         {/* DropdownMenu for technologies */}
         <Filter filterList={technologiesList} setfilterList={setTechnologiesList} selectedFilter={selectedTech} setSelectedFilter={setSelectedTech} Type='Tech'/>
         {/* DropdownMenu for years */}
