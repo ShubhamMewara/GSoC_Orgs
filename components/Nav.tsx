@@ -213,8 +213,8 @@ export default function Navbar() {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <ModeToggle />
-              <div className="ml-3 bg-indigo-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {numofOrgs}
+              <div className="ml-3 p-4 bg-indigo-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {555}
               </div>
             </div>
           </div>

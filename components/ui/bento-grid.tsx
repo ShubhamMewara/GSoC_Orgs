@@ -42,7 +42,7 @@ export const BentoGridItem = ({
     <div
     onClick={()=>{window.open(`/organization/${title}`)}}
       className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-5 dark:bg-slate-700   bg-white justify-around flex flex-col space-y-4 cursor-pointer", 
+        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-5 dark:bg-[#212f4d]   bg-white justify-around flex flex-col space-y-4 cursor-pointer", 
         className
       )}
     >
