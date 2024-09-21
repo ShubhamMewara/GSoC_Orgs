@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { Bell, ChevronDown, Menu, Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGlobalContext } from "./context/page";
 import { categories, Technologies, Topics } from "@/packages/constants/filter";
@@ -207,16 +207,34 @@ export default function Navbar() {
           {/* Search Input */}
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <input
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                placeholder="Search"
-                onChange={(e) => setSearch(e.target.value)}
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out"
+                  placeholder="Search"
+                  type="search"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
               <ModeToggle />
               <div className="ml-3 p-4 bg-indigo-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {555}
+                {numofOrgs}
               </div>
             </div>
+          </div>
+          <div className="-mr-2 flex md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -243,9 +261,78 @@ export default function Navbar() {
                     }
                   >
                     {category.name}
+                    <ChevronDown className="ml-1 h-4 w-4 inline" />
                   </button>
+                  <AnimatePresence>
+                    {activeDropdown === category.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5"
+                      >
+                        <div className="p-2">
+                          <input
+                            type="text"
+                            placeholder={`Search ${category.name}`}
+                            className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white"
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                          />
+                        </div>
+                        <div className="max-h-60 overflow-y-auto space-y-2">
+                          {filteredOptions(category.options).map((option) => {
+                            const isSelected =
+                              (category.name === "Tech" &&
+                                selectedTech.includes(option)) ||
+                              (category.name === "Year" &&
+                                selectedYear.includes(option)) ||
+                              (category.name === "Topic" &&
+                                selectedTopic.includes(option)) ||
+                              (category.name === "Categories" &&
+                                selectedCategory.includes(option));
+
+                            return (
+                              <Button
+                                key={option}
+                                variant={"ghost"}
+                                className={`flex w-full justify-start px-4 py-2 text-sm rounded-md transition-all duration-200 ${
+                                  isSelected
+                                    ? "bg-indigo-500 text-white font-semibold border border-indigo-600 shadow-md"
+                                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                }`}
+                                onClick={() =>
+                                  handleTechFilter(option, category.name)
+                                }
+                              >
+                                {option}
+                              </Button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
+            </div>
+            <div className="pt-4 pb-3 border-t border-gray-700">
+              <div className="flex items-center px-5">
+                <div className="relative w-full">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Search className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out"
+                    placeholder="Search"
+                    type="search"
+                  />
+                </div>
+                <ModeToggle />
+                <div className="ml-3 bg-indigo-600 text-white text-xs font-bold rounded-full w-5 h-5 p-4 flex items-center justify-center">
+                  {numofOrgs}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
