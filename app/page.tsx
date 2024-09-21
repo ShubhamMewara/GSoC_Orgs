@@ -1,6 +1,5 @@
-import Categories from "@/components/Categories";
 import LandingPage from "@/components/Home";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Nav";
 import { getAllOrgs } from "@/prisma/getOrgs";
 
 export default async function Home(){
@@ -8,7 +7,6 @@ export default async function Home(){
   return (
     <div>
         <Navbar/>
-        <Categories/>
         <div className="flex justify-center">
         <LandingPage allOrgs={allOrgs}/>
         </div>

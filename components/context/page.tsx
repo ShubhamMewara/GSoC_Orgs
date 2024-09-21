@@ -5,8 +5,8 @@ import { createContext, useContext, useState } from "react"
 const Context = createContext<{
     search: string;
     setSearch: (search: string) => void;
-    selectedYear: Array<number>;
-    setSelectedYear: (selected: Array<number>) => void;
+    selectedYear: Array<string>;
+    setSelectedYear: (selected: Array<string>) => void;
     selectedTech: Array<string>;
     setSelectedTech: (selectedFilter: Array<string>) => void;
     selectedTopic: Array<string>;
@@ -32,7 +32,7 @@ const Context = createContext<{
 
     export const NavbarContextProvider = ({ children }: any) => {
     const [search, setSearch] = useState<string>("");
-    const [selectedYear, setSelectedYear] = useState<Array<number>>([]);
+    const [selectedYear, setSelectedYear] = useState<Array<string>>([]);
     const [selectedTech, setSelectedTech] = useState<string[]>([])
     const [selectedTopic, setSelectedTopic] = useState<string[]>([])
     const [selectedCategory, setSelectedCategory] = useState<string[]>([])
